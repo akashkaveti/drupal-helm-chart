@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mysql-dump
+spec:
+  template:
+    spec:
+      containers:
+      - name: mysql-dump
+        image: akashkaveti/mc-mysql-client:latest
+        imagePullPolicy: Always
+        command: ["/bin/sh","-c", "/tmp/db.sh"]
+        env:
+        - name: DB_SERVICE_NAME
+          value: "{{- .Release.Name -}}-mariadb"
+        - name: DEST_DB_NAMESPACE
+          value: {{ .Values.dbDump.namespace }}
+        - name: MINIO_HOST
+          value: "https://minio.axl8.xyz"
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio-access
+              key: access_key
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio-access
+              key: secret_key
+        - name: MINIO_BUCKET
+          value: {{ .Values.dbDump.minioBucket  | quote }}
+        - name: MINIO_BUCKET_OBJECT
+          value: {{ .Values.dbDump.minioObject  | quote }}
+        - name: MYSQL_DB_PASS
+          value: "password"
+      # imagePullSecrets:
+      # - name: docker-mysql-client
+      #   volumeMounts:
+      #   - name: db-script
+      #     mountPath: /tmp/db.sh
+      # volumes:
+      #   - name: db-script
+      #     configMap:
+      #       name: db
+      #       defaultMode: 0777
+      restartPolicy: Never
+  backoffLimit: 4
+

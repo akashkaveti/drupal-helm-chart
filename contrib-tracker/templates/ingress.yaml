@@ -1,0 +1,21 @@
+{{- if .Values.project.ingress.enabled }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+{{ if .Values.project.branch }}
+  name: {{ .Values.project.name }}-{{ .Values.project.branch }}-ingress
+{{ end }}
+  name: {{ .Values.project.name }}-ingress
+spec:
+  rules:
+  - host: {{ .Values.project.ingress.host }}
+    http:
+      paths:
+      - path: /
+        backend:
+{{ if .Values.project.branch }}
+          serviceName: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+          serviceName: {{ .Values.project.name }}
+          servicePort: 80
+{{- end }}

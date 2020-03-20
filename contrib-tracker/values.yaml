@@ -1,0 +1,24 @@
+project:
+  name: webinars
+  ingress:
+    enabled: false
+    host: localhost
+  image:
+    registry: registry.axl8.xyz
+    repository: infra/webinars
+    tag: behat
+  persistence:
+    enabled: false
+mariadb:
+  rootUser:
+    password: password
+  db:
+    host: mariadb
+    name: drupal
+    user: drupal
+    password: password
+dbDump:
+  namespace: default
+  minioBucket: webinars-db-dump
+  minioObject: webinars.sql
+

@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+{{ if .Values.project.branch }}
+  name: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+  name: {{ .Values.project.name }}
+  labels:
+{{ if .Values.project.branch }}
+    app: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+    app: {{ .Values.project.name }}
+spec:
+  replicas: {{ .Values.project.replicas | default "1" }}
+  selector:
+    matchLabels:
+{{ if .Values.project.branch }}
+      app: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+      app: {{ .Values.project.name }}
+  template:
+    metadata:
+      labels:
+{{ if .Values.project.branch }}
+        app: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+        app: {{ .Values.project.name }}
+    spec:
+      containers:
+      - name: {{ .Values.project.name }}
+        image: {{ .Values.project.image.registry }}/{{ .Values.project.image.repository }}:{{ .Values.project.image.tag }}
+        ports:
+        - containerPort: {{ .Values.project.image.port | default "80" }}
+        env:
+        - name: TRUSTED_HOST
+          value: {{ .Values.project.ingress.host }}
+        - name: MYSQL_DB_HOST
+          value: {{ .Release.Name }}-{{ .Values.mariadb.db.host }}
+        - name: MYSQL_DATABASE
+          value: {{ .Values.mariadb.db.name }}
+        - name: MYSQL_USER
+          value: root
+        - name: MYSQL_PASSWORD
+          value: {{ .Values.mariadb.rootUser.password }}
+      
+        lifecycle:
+          postStart:
+            exec:
+              command:
+                - "/bin/bash"
+                - "-c"
+                - > 
+                  /var/www/html/vendor/bin/drush cr  
+    volumes:
+    - name: web-volume
+      persistentVolumeClaim:
+{{ if .Values.project.branch }}
+        claimName: {{ .Values.project.name }}-{{ .Values.project.branch }}-pvc
+{{ end }}
+        claimName: {{ .Values.project.name }}-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+{{ if .Values.project.branch }}
+  name: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+  name: {{ .Values.project.name }}
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    name: http
+  type: ClusterIP
+  selector:
+{{ if .Values.project.branch }}
+    app: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+    app: {{ .Values.project.name }}
