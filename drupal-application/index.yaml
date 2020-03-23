@@ -8,7 +8,7 @@ entries:
     digest: 50612d888c9c31bcdf4d83bb28d94580fff35a615bb0b3e3fe28d31b481e7818
     name: drupal-application
     urls:
-    - https://github.com/akashkaveti/drupal-helm-chart/drupal-application-0.1.0.tgz
+    - https://github.com/akashkaveti/drupal-helm-chart/tree/gh-pages/drupal-application-0.1.0.tgz
     version: 0.1.0
   mariadb:
   - created: "2020-03-23T10:45:55.556943+05:30"
