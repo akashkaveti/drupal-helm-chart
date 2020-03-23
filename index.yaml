@@ -3,34 +3,11 @@ entries:
   drupal-application:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-20T15:51:05.627559+05:30"
+    created: "2020-03-23T10:36:55.176755+05:30"
     description: A Helm chart for Kubernetes
     digest: 401b48cecbe603d9c0055b6a8e505f1d79cf7e356372191189706bb316c5bf07
     name: drupal-application
     urls:
-    - drupal-application-0.1.0.tgz
+    - https://github.com/akashkaveti/drupal-helm-chart/drupal-application-0.1.0.tgz
     version: 0.1.0
-  mariadb:
-  - created: "2020-03-20T15:51:05.628036+05:30"
-    description: Fast, reliable, scalable, and easy to use open-source relational
-      database system. MariaDB Server is intended for mission-critical, heavy-load
-      production systems as well as for embedding into mass-deployed software.
-    digest: 845241b7aed3d07417931f003b05854d38da415bafe59a614808c4c865096625
-    engine: gotpl
-    home: https://mariadb.org
-    icon: https://bitnami.com/assets/stacks/mariadb/img/mariadb-stack-220x234.png
-    keywords:
-    - mariadb
-    - mysql
-    - database
-    - sql
-    maintainers:
-    - email: containers@bitnami.com
-      name: Bitnami
-    name: mariadb
-    sources:
-    - https://github.com/bitnami/bitnami-docker-mariadb
-    urls:
-    - charts/mariadb-0.5.9.tgz
-    version: 0.5.9
-generated: "2020-03-20T15:51:05.624695+05:30"
+generated: "2020-03-23T10:36:55.174614+05:30"
