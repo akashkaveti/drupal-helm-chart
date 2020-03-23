@@ -42,7 +42,10 @@ spec:
           value: root
         - name: MYSQL_PASSWORD
           value: {{ .Values.mariadb.rootUser.password }}
-      
+        - name: BEHAT_BASE_URL
+          value: {{ .Values.project.ingress.host }}
+        - name: SELENIUM_SERVICE
+          value: {{ .Values.project.behat.selenium }}
         lifecycle:
           postStart:
             exec:

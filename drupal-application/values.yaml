@@ -9,6 +9,8 @@ project:
     tag: behat
   persistence:
     enabled: false
+  behat:
+    selenium: http://selenium-chrome-service:9515
 mariadb:
   rootUser:
     password: password
