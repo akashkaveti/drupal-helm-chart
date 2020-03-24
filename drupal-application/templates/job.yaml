@@ -7,6 +7,8 @@ spec:
   template:
     spec:
       containers:
+      imagePullSecrets: 
+        - name: {{ .Values.dbDump.PullSecrets }}
       - name: mysql-dump
         image: akashkaveti/mc-mysql-client:latest
         imagePullPolicy: Always

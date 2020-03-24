@@ -27,6 +27,8 @@ spec:
         app: {{ .Values.project.name }}
     spec:
       containers:
+      imagePullSecrets:
+        - name: {{ .Values.project.image.PullSecret }}
       - name: {{ .Values.project.name }}
         image: {{ .Values.project.image.registry }}/{{ .Values.project.image.repository }}:{{ .Values.project.image.tag }}
         ports:
@@ -54,6 +56,7 @@ spec:
                 - "-c"
                 - > 
                   /var/www/html/vendor/bin/drush cr  
+      
     volumes:
     - name: web-volume
       persistentVolumeClaim:
