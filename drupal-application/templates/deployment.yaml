@@ -26,9 +26,9 @@ spec:
 {{ end }}
         app: {{ .Values.project.name }}
     spec:
-      containers:
       imagePullSecrets:
         - name: {{ .Values.project.image.PullSecret }}
+      containers:
       - name: {{ .Values.project.name }}
         image: {{ .Values.project.image.registry }}/{{ .Values.project.image.repository }}:{{ .Values.project.image.tag }}
         ports:
