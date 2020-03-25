@@ -6,9 +6,9 @@ spec:
   ttlSecondsAfterFinished: 100
   template:
     spec:
-      containers:
       imagePullSecrets: 
-        - name: {{ .Values.dbDump.PullSecrets }}
+      - name: {{ .Values.dbDump.PullSecret }}
+      containers:
       - name: mysql-dump
         image: akashkaveti/mc-mysql-client:latest
         imagePullPolicy: Always
