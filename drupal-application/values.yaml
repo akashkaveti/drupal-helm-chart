@@ -1,3 +1,4 @@
+drupalVersion: v8
 project:
   name: webinars
   ingress:

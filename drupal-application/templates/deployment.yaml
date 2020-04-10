@@ -48,6 +48,7 @@ spec:
           value: {{ .Values.project.ingress.host }}
         - name: SELENIUM_SERVICE
           value: {{ .Values.project.behat.selenium }}
+        {{ if eq .Values.drupalVersion "v8" }}
         lifecycle:
           postStart:
             exec:
@@ -55,7 +56,8 @@ spec:
                 - "/bin/bash"
                 - "-c"
                 - > 
-                  /var/www/html/vendor/bin/drush cr  
+                  /var/www/html/vendor/bin/drush cr
+        {{ end }}  
       
     volumes:
     - name: web-volume
