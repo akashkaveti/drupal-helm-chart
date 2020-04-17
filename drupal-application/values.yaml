@@ -8,7 +8,7 @@ project:
     registry: registry.axl8.xyz
     repository: infra/webinars
     tag: behat
-    PullSecret: docker-infra-webinars
+    PullSecret: docker-infra
   persistence:
     enabled: false
   behat:
