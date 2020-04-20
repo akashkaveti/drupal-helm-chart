@@ -13,6 +13,8 @@ project:
     enabled: false
   behat:
     selenium: http://selenium-chrome-service:9515
+  env:
+    K8S_ENABLED: true
 mariadb:
   rootUser:
     password: password
