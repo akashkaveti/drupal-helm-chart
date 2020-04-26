@@ -1,16 +1,20 @@
 drupalVersion: v8
 project:
-  name: webinars
+  name: staples
   ingress:
     enabled: false
     host: localhost
   image:
     registry: registry.axl8.xyz
-    repository: infra/webinars
-    tag: behat
-    PullSecret: docker-infra
+    repository: infra/staples
+    tag: 497ed363
+    PullSecret: docker-login
+  nginxImage:
+    registry: registry.axl8.xyz
+    repository: infra/nginx
+    tag: 9b51cff0
   persistence:
-    enabled: false
+    enabled: true
   behat:
     selenium: http://selenium-chrome-service:9515
 mariadb:
