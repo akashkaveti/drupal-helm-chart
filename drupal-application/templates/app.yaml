@@ -37,6 +37,8 @@ spec:
           {{ end }}
             claimName: {{ .Values.project.name }}-pvc
       containers:
+      imagePullSecrets:
+      - name: {{ .Values.project.image.PullSecret }}
       - name: php-fpm
         image: {{ .Values.project.image.registry }}/{{ .Values.project.image.repository }}:{{ .Values.project.image.tag }}
         env:
@@ -70,7 +72,7 @@ spec:
                 - "/bin/sh"
                 - "-c"
                 - > 
-                  ./post-install.sh
+                  ./post-deploy.sh
                   #cp -fr /code/. /app;
                   # rm -rf /app/web/sites/default/files;
                   # ln -s /shared /app/web/sites/default/files;
@@ -82,5 +84,3 @@ spec:
         volumeMounts:
           - name: app
             mountPath: /app
-      imagePullSecrets:
-      - name: {{ .Values.project.image.PullSecret }}
