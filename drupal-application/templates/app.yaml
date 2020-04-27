@@ -72,7 +72,7 @@ spec:
                 - "/bin/sh"
                 - "-c"
                 - > 
-                  ./post-deploy.sh
+                  /app/post-deploy.sh
                   #cp -fr /code/. /app;
                   # rm -rf /app/web/sites/default/files;
                   # ln -s /shared /app/web/sites/default/files;
