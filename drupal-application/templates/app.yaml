@@ -84,3 +84,22 @@ spec:
         volumeMounts:
           - name: app
             mountPath: /app
+---
+apiVersion: v1
+kind: Service
+metadata:
+{{ if .Values.project.branch }}
+  name: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+  name: {{ .Values.project.name }}
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    name: http
+  type: ClusterIP
+  selector:
+{{ if .Values.project.branch }}
+      app: {{ .Values.project.name }}-{{ .Values.project.branch }}
+{{ end }}
+      app: {{ .Values.project.name }}
