@@ -72,8 +72,8 @@ spec:
                 - "/bin/sh"
                 - "-c"
                 - > 
+                  cp -fr /code/. /app;
                   /app/post-deploy.sh
-                  #cp -fr /code/. /app;
                   # rm -rf /app/web/sites/default/files;
                   # ln -s /shared /app/web/sites/default/files;
       - name: nginx
