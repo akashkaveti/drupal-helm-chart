@@ -3,11 +3,11 @@ entries:
   drupal-application:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-04-27T12:17:25.08704+05:30"
+    created: "2020-04-27T12:29:41.365277+05:30"
     description: A Helm chart for Kubernetes
-    digest: 0a425622a31a5c2af42ec33ae0087a226fb080024a8503567ad165e1d98e28ea
+    digest: d5da632d896ac112db8842f81708b9d23c8a532ff124bc2267fb8d1fc79b216d
     name: drupal-application
     urls:
-    - https://akashkaveti.github.io/drupal-helm-chart/charts/drupal-application-1.0.2.tgz
-    version: 1.0.2
-generated: "2020-04-27T12:17:25.086102+05:30"
+    - https://akashkaveti.github.io/drupal-helm-chart/charts/drupal-application-1.0.3.tgz
+    version: 1.0.3
+generated: "2020-04-27T12:29:41.364267+05:30"
