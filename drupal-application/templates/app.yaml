@@ -26,6 +26,8 @@ spec:
 {{ end }}
         app: {{ .Values.project.name }}
     spec:
+      imagePullSecrets:
+        - name: {{ .Values.project.image.pullSecret }}
       volumes:
         # Create the shared files volume to be used in both pods
         - name: app
@@ -37,8 +39,6 @@ spec:
           {{ end }}
             claimName: {{ .Values.project.name }}-pvc
       containers:
-      imagePullSecrets:
-      - name: {{ .Values.project.image.PullSecret }}
       - name: php-fpm
         image: {{ .Values.project.image.registry }}/{{ .Values.project.image.repository }}:{{ .Values.project.image.tag }}
         env:
