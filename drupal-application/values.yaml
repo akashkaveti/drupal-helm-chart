@@ -12,7 +12,8 @@ project:
   nginxImage:
     registry: registry.axl8.xyz
     repository: infra/nginx
-    tag: 9b51cff0
+    tag: 651e31a0
+    docroot: web
   persistence:
     enabled: true
   behat:

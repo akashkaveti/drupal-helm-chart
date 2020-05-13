@@ -78,6 +78,9 @@ spec:
                   # ln -s /shared /app/web/sites/default/files;
       - name: nginx
         image: {{ .Values.project.image.registry }}/{{ .Values.project.nginxImage.repository }}:{{ .Values.project.nginxImage.tag }}
+        env:
+        - name: DOC_ROOT
+          value: {{ .Values.project.nginxImage.docroot }}
         ports:
           - name: http
             containerPort: 8080
